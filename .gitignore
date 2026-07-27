@@ -1,0 +1,20 @@
+# Generated output
+scl_export/
+scl_export_note/
+scl_import_fix/
+_block_groups.json
+_debug.txt
+*.output
+
+# TIA Openness DLL (Siemens copyrighted)
+*.dll
+Siemens.Engineering.*
+
+# Temp files
+*.tmp
+*.temp
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
