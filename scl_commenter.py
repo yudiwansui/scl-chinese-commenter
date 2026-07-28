@@ -10,6 +10,15 @@ import os
 import re
 from pathlib import Path
 
+# ── 加载外部词典（可选）─────────────────────────────────────────────
+import json as _json
+_CONFIG_PATH = Path(__file__).parent / "dict_config.json"
+if _CONFIG_PATH.exists():
+    with open(_CONFIG_PATH, 'r', encoding='utf-8') as _f:
+        _cfg = _json.load(_f)
+    _OVERLAY = {k: v for k, v in _cfg.items() if isinstance(v, dict)}
+else:
+    _OVERLAY = {}
 
 # ═══════════════════════════════════════════════════════════════════
 # 项目函数块词典 (你们项目的标准库)
@@ -53,6 +62,7 @@ FB_DICT = {
     "SRM_CV_Ctrl":             "堆垛机输送",
 }
 
+if "fb_dict" in _OVERLAY: FB_DICT.update(_OVERLAY["fb_dict"])
 
 # ═══════════════════════════════════════════════════════════════════
 # 参数词典 (你们项目的命名约定)
@@ -328,6 +338,7 @@ PARAM_DICT = {
     "RESET":                   "复位",
 }
 
+if "param_dict" in _OVERLAY: PARAM_DICT.update(_OVERLAY["param_dict"])
 
 # ═══════════════════════════════════════════════════════════════════
 # 设备类型前缀识别 (用于扫描代码中的信号标签)
@@ -368,6 +379,8 @@ DEVICE_PREFIX = {
     "HLMCP": "指示灯(主控)",
     "KMMCP": "接触器(主控)",
 }
+
+if "device_prefix" in _OVERLAY: DEVICE_PREFIX.update(_OVERLAY["device_prefix"])
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -480,6 +493,8 @@ SIGNAL_SUFFIX = {
     "SB2":     "停止按钮",
     "BZ":      "蜂鸣器",
 }
+
+if "signal_suffix" in _OVERLAY: SIGNAL_SUFFIX.update(_OVERLAY["signal_suffix"])
 
 
 def decode_signal(tag: str) -> str:
@@ -770,6 +785,8 @@ INSTRUCTION_DICT = {
     "MIN": "取最小值",
     "LIMIT": "限幅",
 }
+
+if "instruction_dict" in _OVERLAY: INSTRUCTION_DICT.update(_OVERLAY["instruction_dict"])
 
 
 def match_fb_name(call_name: str) -> str:

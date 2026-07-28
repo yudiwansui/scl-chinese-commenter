@@ -1,0 +1,19 @@
+{
+  "param_dict": {},
+  "signal_suffix": {},
+  "device_prefix": {},
+  "fb_dict": {},
+  "instruction_dict": {
+    "TON": "接通延时定时器",
+    "TOF": "断开延时定时器",
+    "CTU": "加计数器",
+    "CTD": "减计数器",
+    "IF": "条件判断",
+    "FOR": "循环",
+    "CASE": "多分支选择",
+    "RETURN": "返回",
+    "R_TRIG": "上升沿检测",
+    "F_TRIG": "下降沿检测",
+    "MOVE": "传送"
+  }
+}
